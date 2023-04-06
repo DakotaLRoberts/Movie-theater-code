@@ -1,0 +1,1224 @@
+#include <iostream>
+
+#include <string>
+
+
+
+using namespace std;
+int Quit = 1;
+void Show_Chart();
+void Show_Chart2();
+void Show_Chart3();
+void Show_Chart4();
+const string FULL = "#";
+const string EMPTY = "*";
+const string blocker = "X ";
+const int rows = 7;  
+const int columns = 8;
+string map[rows][columns];
+string map3[rows][columns];
+string map4[rows][columns];
+string map2[rows][columns];
+void movielisting(float&, int&,int&,float& ,float&);
+void FreeBirds(float&, int&, int&, float&, float&);
+void FreeBirds(float&, int&, int&, float&, float&);
+void Bethooven(float&, int&, int&, float&, float&);
+void admin(float&, int&, int&, float&, float&);
+void freebirdseats(int,int,int,float&, int&, int&, float&, float&);
+void bethoovenseats(int,int,int,float&, int&, int&, float&, float&);
+
+int main() {
+	float total = 0;
+	int totaladult = 0;
+	int totalchild = 0;
+	float adultcash = 0;
+	float childcash = 0;
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+			map[i][j] = EMPTY;
+	}
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+			map2[i][j] = EMPTY;
+	}
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+			map3[i][j] = EMPTY;
+	}
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+			map4[i][j] = EMPTY;
+	}
+	movielisting(total , totaladult, totalchild,adultcash,childcash);
+	
+
+}
+void movielisting(float& total, int& totaladult, int& totalchild, float& adultcash, float& childcash ){
+	int movie;
+	cout << "Which movie do you wish to see today?" << endl;
+	cout << "Free Birds: " << "(1)" << endl; 
+	cout << "Bethooven: " << "(2)" << endl;
+	cin >> movie;
+	if (movie == 1) {
+		FreeBirds(total, totaladult, totalchild, adultcash, childcash);
+		
+	}
+	else if(movie == 2){
+		Bethooven(total, totaladult, totalchild, adultcash, childcash);
+	}
+	else if(movie == -99){
+		admin(total, totaladult, totalchild, adultcash, childcash);
+	}
+}
+void FreeBirds(float& total, int& totaladult, int& totalchild, float& adultcash, float& childcash){
+	int showtime;
+	int adult;
+	int child;
+	cout << "You Have selected Free Bird" << endl;
+	cout << "Which showing would you like to see (1)3:30 or (2)6:00" << endl;
+	cin >> showtime;
+	if (showtime == 1) {
+		
+		cout << "Adult tickets are:" << "$6.00" << endl;
+		cout << "Child tickets are:" << "$4.00" << endl;
+		cout << "Enter how many Adult Tickets you would like" << endl;
+		cin >> adult;
+		cout << "Enter how many Child Tickets you would like" << endl;
+		cin >> child;
+		freebirdseats(adult,child,showtime,total, totaladult, totalchild, adultcash, childcash);
+
+	}
+	else if (showtime == 2) {
+		cout << "Adult tickets are:" << "$8.00" << endl;
+		cout << "Child tickets are:" << "$6.00" << endl;
+		cout << "Enter how many Adult Tickets you would like" << endl;
+		cin >> adult;
+		cout << "Enter how many Child Tickets you would like" << endl;
+		cin >> child;
+		freebirdseats(adult, child,showtime,total, totaladult, totalchild, adultcash, childcash);
+	}
+	
+}
+void Bethooven(float& total, int& totaladult, int& totalchild, float& adultcash, float& childcash){
+	int showtime;
+	int adult;
+	int child;
+	cout << "You Have selected Bethooven" << endl;
+	cout << "Which showing would you like to see (1)5:30 or (2)7:30" << endl;
+	cin >> showtime;
+	if (showtime == 1) {
+
+		cout << "Adult tickets are:" << "$6.00" << endl;
+		cout << "Child tickets are:" << "$4.00" << endl;
+		cout << "Enter how many Adult Tickets you would like" << endl;
+		cin >> adult;
+		cout << "Enter how many Child Tickets you would like" << endl;
+		cin >> child;
+		bethoovenseats(adult, child,showtime,total, totaladult, totalchild, adultcash, childcash);
+	}
+	else if (showtime == 2) {
+		cout << "Adult tickets are:" << "$8.00" << endl;
+		cout << "Child tickets are:" << "$6.00" << endl;
+		cout << "Enter how many Adult Tickets you would like" << endl;
+		cin >> adult;
+		cout << "Enter how many Child Tickets you would like" << endl;
+		cin >> child;
+		bethoovenseats(adult, child,showtime,total, totaladult, totalchild, adultcash, childcash);
+	}
+}
+void admin(float& total, int& totaladult, int& totalchild, float& adultcash, float& childcash){
+	int adminchoice;
+	int type;
+	int loop = 0;
+	int menu = 0;
+	int totaltickets;
+	totaltickets = totaladult + totalchild;
+	do{
+	cout << "Please select an option below" << endl;
+	cout << "Number of tickets sold" << "(1)" << endl;
+	cout << "Amount of profits " << "(2)" << endl;
+	cout << "Shutdown " << "(3)" << endl;
+	cin >> adminchoice;
+		if (adminchoice == 1) {
+			cout << "Please select an option below" << endl;
+			cout << "See the total of ticket sold by ticket type" << "(1)" << endl;
+			cout << "see the total amount of tickets sold " << "(2)" << endl;
+			cin >> type;
+			if(type == 1){
+				cout << "Adult tickets sold: " << totaladult << endl;
+				cout << "child tickets sold: " << totalchild << endl;
+			}
+			else if(type == 2){
+				
+				cout << "tickets sold: " << totaltickets << endl;
+			}
+			cout << "Would you like to go back to the admin menu (1)yes or (2) no" << endl;
+			cin >> menu;
+			if (menu == 1) {
+			
+			}
+			else if (menu == 2) {
+				movielisting(total, totaladult, totalchild, adultcash, childcash);
+			}
+		
+
+		}
+		else if (adminchoice == 2) {
+			cout << "Please select an option below" << endl;
+			cout << "See the total of profit sold by ticket type" << "(1)" << endl;
+			cout << "see the total amount of tickets sold " << "(2)" << endl;
+			cin >> type;
+			if (type == 1) {
+				cout << "Adult tickets sold: " << adultcash << endl;
+				cout << "child tickets sold: " << childcash << endl;
+			}
+			else if (type == 2) {
+				cout << "The total amount of profit:" << total  << endl;
+			}
+			cout << "Would you like to go back to the admin menu (1)yes or (2) no" << endl;
+			cin >> menu;
+			if (menu == 1) {
+			
+			
+			}
+			else if (menu == 2) {
+				movielisting(total, totaladult, totalchild, adultcash, childcash);
+			}
+		}
+		else if (adminchoice == 3) {
+			cout << "end of day, no more movies available to watch" << endl;
+			loop = 1;
+			
+		}
+	} while (loop != 1);
+
+}
+void freebirdseats(int adult, int child, int showtime, float& total, int& totaladult, int& totalchild, float& adultcash, float& childcash) {
+	int totalseat = adult + child;
+	int row2, column2, cost;
+	int answer;
+	float ticketadult;
+	float ticketchild;
+	int purchase;
+	int count = 0;
+	int Quit = 0;
+	int num = 32;
+	int row = 7;
+	int seat = 0;
+	if (showtime == 1) {
+		ticketadult = adult * 6.00;
+		ticketchild = child * 4.00;
+		total = ticketadult + ticketchild;
+		totaladult = adult + totaladult;
+		totalchild = child + totalchild;
+		Show_Chart();
+		cout << "Shown above are the avaible seats for the day" << endl;
+		cout << "Your total is:  $" << total << endl;
+		cout << "Would you like to purchase these tickets? Enter (1 = YES / 2 = NO)" << endl;
+		cin >> purchase;
+		if (purchase == 1) {
+			adultcash = adultcash + totaladult;
+			childcash = childcash + totalchild;
+			do {
+				Show_Chart();
+				cout << "Please select the row you would like to sit in: ";
+				cin >> row2;
+				cout << "Please select the seat you would like to sit in: ";
+				cin >> column2;
+				if (map[row2 - 1][column2 - 1] == FULL)
+				{
+					cout << "Sorry that seat is sold-out, Please select a new seat.";
+					cout << endl;
+				}
+				else if (map[row2 - 1][column2 - 1] == blocker) {}
+				else
+				{
+
+
+					cout << "is this the seat you would like? Enter (1 = YES / 2 = NO)";
+					cin >> answer;
+
+					if (answer == 1) {
+						map[row2 - 1][column2 - 1] = FULL;
+					}
+
+
+				}
+				count++;
+			} while (count < totalseat);
+			cout << "Here are your seats" << endl;
+			answer = 1;
+			if (answer != 7)
+			{
+				cout << "searching" << endl;
+
+				num = 72;
+				int i;//row
+				int j;//columon
+				for (i = 0; i < row; i++) {
+					for (j = 0; j < columns;j++)
+
+						if (map[i][j] == FULL) {
+							cout << i << endl;
+
+
+
+							if (j == 7) {
+								if (map[i + 1][j] == FULL) {
+								}//row v
+								else if (map[i + 1][j] != FULL && map[i + 1][j] == EMPTY) {
+									map[i + 1][j] = blocker;
+								}
+								else {
+
+								}
+								if (map[i - 1][j] == FULL) {}//row aboe
+								else if (map[i - 1][j] != FULL && map[i - 1][j] == EMPTY) {
+									map[i - 1][j] = blocker;
+								}
+								else {
+
+								}
+								if (map[i][j - 1] == FULL) {}
+								else if (map[i][j - 1] != FULL && map[i][j - 1] == EMPTY) {
+									map[i][j - 1] = blocker;
+								}
+								else {
+
+								}
+							}
+							if (j - 1 != -1) {
+								if (map[i][j - 1] == FULL) {}
+								else if (map[i][j - 1] != FULL && map[i][j - 1] == EMPTY) {
+									map[i][j - 1] = blocker;
+									cout << i << endl;
+								}
+								else {
+
+								}
+							}
+							if (j + 1 != 8) {
+								if (map[i][j + 1] == FULL) {}
+								else if (map[i][j + 1] != FULL && map[i][j + 1] == EMPTY) {
+									map[i][j + 1] = blocker;
+								}
+								else {
+
+								}
+							}
+							if (i + 1 != 7) {
+								if (map[i + 1][j] == FULL) {}
+								else if (map[i + 1][j] != FULL && map[i + 1][j] == EMPTY) {
+									map[i + 1][j] = blocker;
+								}
+								else {
+
+								}
+							}
+							if (i - 1 != -1) {
+								if (map[i - 1][j] == FULL) {}
+								else if (map[i - 1][j] != FULL && map[i - 1][j] == EMPTY) {
+									map[i - 1][j] = blocker;
+								}
+								else {
+
+								}
+
+							}
+
+						}
+
+
+
+
+
+
+
+				}
+				Show_Chart();
+				cout << "Your seats has been confirmed."
+					<< endl;
+
+				Quit = 1;
+			}
+			else {
+				cout << "searching" << endl;
+
+				num = 72;
+				int i;
+				int j;
+				for (i = 0; i < row; i++) {
+					for (j = 0; j < row;j++)
+						if (j == 7 && map[i][j] == FULL) {
+							if (map[i + 1][j] == FULL) {}
+							else if (map[i + 1][j] != FULL && map[i + 1][j] == EMPTY) {
+								map[i + 1][j] = blocker;
+							}
+							else {
+
+							}
+							if (map[i - 1][j] == FULL) {}
+							else if (map[i - 1][j] != FULL && map[i - 1][j] == EMPTY) {
+								map[i - 1][j] = blocker;
+							}
+							else {
+
+							}
+							if (map[i][j + 1] == FULL) {}
+							else if (map[i][j + 1] != FULL && map[i][j + 1] == EMPTY) {
+								map[i][j + 1] = blocker;
+							}
+							else {
+
+							}
+						}
+					if (map[i][j] == FULL) {
+						cout << i << endl;
+
+
+
+
+						if (j - 1 != -1) {
+							if (map[i][j - 1] == FULL) {}
+							else if (map[i][j - 1] != FULL && map[i][j - 1] == EMPTY) {
+								map[i][j - 1] = blocker;
+								cout << i << endl;
+							}
+							else {
+
+							}
+						}
+						if (j + 1 != 8) {
+							if (map[i][j + 1] == FULL) {}
+							else if (map[i][j + 1] != FULL && map[i][j + 1] == EMPTY) {
+								map[i][j + 1] = blocker;
+							}
+							else {
+
+							}
+						}
+						if (i + 1 != 7) {
+							if (map[i + 1][j] == FULL) {}
+							else if (map[i + 1][j] != FULL && map[i + 1][j] == EMPTY) {
+								map[i + 1][j] = blocker;
+							}
+							else {
+
+							}
+						}
+						if (i - 1 != -1) {
+							if (map[i - 1][j] == FULL) {}
+							else if (map[i - 1][j] != FULL && map[i - 1][j] == EMPTY) {
+								map[i - 1][j] = blocker;
+							}
+							else {
+
+							}
+
+						}
+						Show_Chart();
+					}
+
+
+
+
+
+
+
+				}
+				cout << "Your seats has been confirmed."
+					<< endl;
+
+				Quit = 1;
+			}
+
+		}
+		else if (purchase == 2) {
+			cout << " Have a nice day!! " << endl;
+			movielisting(total, totaladult, totalchild, adultcash, childcash);
+		}
+	}
+	else if (showtime == 2) {
+		ticketadult = adult * 8.00;
+		ticketchild = child * 6.00;
+		total = ticketadult + ticketchild;
+		totaladult = adult + totaladult;
+		totalchild = child + totalchild;
+		Show_Chart3();
+		cout << "Shown above are the avaible seats for the day" << endl;
+		cout << "Your total is:  $" << total << endl;
+		cout << "Would you like to purchase these tickets? Enter (1 = YES / 2 = NO)" << endl;
+		cin >> purchase;
+		if (purchase == 1) {
+			adultcash = adultcash + totaladult;
+			childcash = childcash + totalchild;
+			do {
+				Show_Chart3();
+				cout << "Please select the row you would like to sit in: ";
+				cin >> row2;
+				cout << "Please select the seat you would like to sit in: ";
+				cin >> column2;
+				if (map3[row2 - 1][column2 - 1] == FULL)
+				{
+					cout << "Sorry that seat is sold-out, Please select a new seat.";
+					cout << endl;
+				}
+				else if (map3[row2 - 1][column2 - 1] == blocker) {}
+				else
+				{
+
+
+					cout << "is this the seat you would like? Enter (1 = YES / 2 = NO)";
+					cin >> answer;
+
+					if (answer == 1) {
+						map3[row2 - 1][column2 - 1] = FULL;
+					}
+
+
+				}
+				count++;
+			} while (count < totalseat);
+			cout << "Here are your seats" << endl;
+			answer = 1;
+			if (answer != 7)
+			{
+				cout << "searching" << endl;
+
+				num = 72;
+				int i;//row
+				int j;//columon
+				for (i = 0; i < row; i++) {
+					for (j = 0; j < columns;j++)
+
+						if (map3[i][j] == FULL) {
+							cout << i << endl;
+
+
+
+							if (j == 7) {
+								if (map3[i + 1][j] == FULL) {
+								}//row v
+								else if (map3[i + 1][j] != FULL && map3[i + 1][j] == EMPTY) {
+									map3[i + 1][j] = blocker;
+								}
+								else {
+
+								}
+								if (map3[i - 1][j] == FULL) {}//row aboe
+								else if (map3[i - 1][j] != FULL && map3[i - 1][j] == EMPTY) {
+									map3[i - 1][j] = blocker;
+								}
+								else {
+
+								}
+								if (map3[i][j - 1] == FULL) {}
+								else if (map3[i][j - 1] != FULL && map3[i][j - 1] == EMPTY) {
+									map3[i][j - 1] = blocker;
+								}
+								else {
+
+								}
+							}
+							if (j - 1 != -1) {
+								if (map3[i][j - 1] == FULL) {}
+								else if (map3[i][j - 1] != FULL && map3[i][j - 1] == EMPTY) {
+									map3[i][j - 1] = blocker;
+									cout << i << endl;
+								}
+								else {
+
+								}
+							}
+							if (j + 1 != 8) {
+								if (map3[i][j + 1] == FULL) {}
+								else if (map3[i][j + 1] != FULL && map3[i][j + 1] == EMPTY) {
+									map3[i][j + 1] = blocker;
+								}
+								else {
+
+								}
+							}
+							if (i + 1 != 7) {
+								if (map3[i + 1][j] == FULL) {}
+								else if (map3[i + 1][j] != FULL && map3[i + 1][j] == EMPTY) {
+									map3[i + 1][j] = blocker;
+								}
+								else {
+
+								}
+							}
+							if (i - 1 != -1) {
+								if (map3[i - 1][j] == FULL) {}
+								else if (map3[i - 1][j] != FULL && map3[i - 1][j] == EMPTY) {
+									map3[i - 1][j] = blocker;
+								}
+								else {
+
+								}
+
+							}
+
+						}
+
+
+
+
+
+
+
+				}
+				Show_Chart();
+				cout << "Your seats has been confirmed."
+					<< endl;
+
+				Quit = 1;
+			}
+			else {
+				cout << "searching" << endl;
+
+				num = 72;
+				int i;
+				int j;
+				for (i = 0; i < row; i++) {
+					for (j = 0; j < row;j++)
+						if (j == 7 && map3[i][j] == FULL) {
+							if (map3[i + 1][j] == FULL) {}
+							else if (map3[i + 1][j] != FULL && map3[i + 1][j] == EMPTY) {
+								map3[i + 1][j] = blocker;
+							}
+							else {
+
+							}
+							if (map3[i - 1][j] == FULL) {}
+							else if (map3[i - 1][j] != FULL && map3[i - 1][j] == EMPTY) {
+								map3[i - 1][j] = blocker;
+							}
+							else {
+
+							}
+							if (map3[i][j + 1] == FULL) {}
+							else if (map3[i][j + 1] != FULL && map3[i][j + 1] == EMPTY) {
+								map3[i][j + 1] = blocker;
+							}
+							else {
+
+							}
+						}
+					if (map3[i][j] == FULL) {
+						cout << i << endl;
+
+
+
+
+						if (j - 1 != -1) {
+							if (map3[i][j - 1] == FULL) {}
+							else if (map3[i][j - 1] != FULL && map3[i][j - 1] == EMPTY) {
+								map3[i][j - 1] = blocker;
+								cout << i << endl;
+							}
+							else {
+
+							}
+						}
+						if (j + 1 != 8) {
+							if (map3[i][j + 1] == FULL) {}
+							else if (map3[i][j + 1] != FULL && map3[i][j + 1] == EMPTY) {
+								map3[i][j + 1] = blocker;
+							}
+							else {
+
+							}
+						}
+						if (i + 1 != 7) {
+							if (map3[i + 1][j] == FULL) {}
+							else if (map3[i + 1][j] != FULL && map3[i + 1][j] == EMPTY) {
+								map3[i + 1][j] = blocker;
+							}
+							else {
+
+							}
+						}
+						if (i - 1 != -1) {
+							if (map3[i - 1][j] == FULL) {}
+							else if (map3[i - 1][j] != FULL && map3[i - 1][j] == EMPTY) {
+								map3[i - 1][j] = blocker;
+							}
+							else {
+
+							}
+
+						}
+						Show_Chart();
+					}
+
+
+
+
+
+
+
+				}
+				cout << "Your seats has been confirmed."
+					<< endl;
+
+				Quit = 1;
+			}
+
+		}
+		else if (purchase == 2) {
+			cout << " Have a nice day!! " << endl;
+			movielisting(total, totaladult, totalchild, adultcash, childcash);
+		}
+	}
+	
+	
+	movielisting(total, totaladult, totalchild, adultcash, childcash);
+	
+
+	
+}
+void bethoovenseats(int adult, int child, int showtime, float& total, int& totaladult, int& totalchild, float& adultcash, float& childcash) {
+	int totalseat = adult + child;
+	int row2, column2, cost;
+	int answer;
+	double ticketadult;
+	double ticketchild;
+	int purchase;
+	int count = 0;
+	int Quit = 0;
+	int num = 32;
+	int row = 7;
+	int seat = 0;
+	if (showtime == 1) {
+		ticketadult = adult * 6.00;
+		ticketchild = child * 4.00;
+		total = ticketadult + ticketchild;
+		totaladult = adult + totaladult;
+		totalchild = child + totalchild;
+		Show_Chart2();
+		cout << "Shown above are the avaible seats for the day" << endl;
+		cout << "Your total is:  $" << total << endl;
+		cout << "Would you like to purchase these tickets? Enter (1 = YES / 2 = NO)" << endl;
+		cin >> purchase;
+		if (purchase == 1) {
+			adultcash = adultcash + totaladult;
+			childcash = childcash + totalchild;
+			do {
+				Show_Chart2();
+				cout << "Please select the row you would like to sit in: ";
+				cin >> row2;
+				cout << "Please select the seat you would like to sit in: ";
+				cin >> column2;
+				if (map2[row2 - 1][column2 - 1] == FULL)
+				{
+					cout << "Sorry that seat is sold-out, Please select a new seat.";
+					cout << endl;
+				}
+				else if (map2[row2 - 1][column2 - 1] == blocker) {}
+				else
+				{
+
+
+					cout << "is this the seat you would like? Enter (1 = YES / 2 = NO)";
+					cin >> answer;
+
+					if (answer == 1) {
+						map2[row2 - 1][column2 - 1] = FULL;
+					}
+
+
+				}
+				count++;
+			} while (count < totalseat);
+			cout << "Here are your seats" << endl;
+			answer = 1;
+			if (answer != 7)
+			{
+				cout << "searching" << endl;
+
+				num = 72;
+				int i;//row
+				int j;//columon
+				for (i = 0; i < row; i++) {
+					for (j = 0; j < columns;j++)
+
+						if (map2[i][j] == FULL) {
+							cout << i << endl;
+
+
+
+							if (j == 7) {
+								if (map2[i + 1][j] == FULL) {
+								}//row v
+								else if (map2[i + 1][j] != FULL && map2[i + 1][j] == EMPTY) {
+									map2[i + 1][j] = blocker;
+								}
+								else {
+
+								}
+								if (map2[i - 1][j] == FULL) {}//row aboe
+								else if (map2[i - 1][j] != FULL && map2[i - 1][j] == EMPTY) {
+									map2[i - 1][j] = blocker;
+								}
+								else {
+
+								}
+								if (map2[i][j - 1] == FULL) {}
+								else if (map2[i][j - 1] != FULL && map2[i][j - 1] == EMPTY) {
+									map2[i][j - 1] = blocker;
+								}
+								else {
+
+								}
+							}
+							if (j - 1 != -1) {
+								if (map2[i][j - 1] == FULL) {}
+								else if (map2[i][j - 1] != FULL && map2[i][j - 1] == EMPTY) {
+									map2[i][j - 1] = blocker;
+									cout << i << endl;
+								}
+								else {
+
+								}
+							}
+							if (j + 1 != 8) {
+								if (map2[i][j + 1] == FULL) {}
+								else if (map2[i][j + 1] != FULL && map2[i][j + 1] == EMPTY) {
+									map2[i][j + 1] = blocker;
+								}
+								else {
+
+								}
+							}
+							if (i + 1 != 7) {
+								if (map2[i + 1][j] == FULL) {}
+								else if (map2[i + 1][j] != FULL && map2[i + 1][j] == EMPTY) {
+									map2[i + 1][j] = blocker;
+								}
+								else {
+
+								}
+							}
+							if (i - 1 != -1) {
+								if (map2[i - 1][j] == FULL) {}
+								else if (map2[i - 1][j] != FULL && map2[i - 1][j] == EMPTY) {
+									map2[i - 1][j] = blocker;
+								}
+								else {
+
+								}
+
+							}
+
+						}
+
+
+
+
+
+
+
+				}
+				Show_Chart2();
+				cout << "Your seats has been confirmed."
+					<< endl;
+
+				Quit = 1;
+			}
+			else {
+				cout << "searching" << endl;
+
+				num = 72;
+				int i;
+				int j;
+				for (i = 0; i < row; i++) {
+					for (j = 0; j < row;j++)
+						if (j == 7 && map2[i][j] == FULL) {
+							if (map2[i + 1][j] == FULL) {}
+							else if (map2[i + 1][j] != FULL && map2[i + 1][j] == EMPTY) {
+								map2[i + 1][j] = blocker;
+							}
+							else {
+
+							}
+							if (map2[i - 1][j] == FULL) {}
+							else if (map2[i - 1][j] != FULL && map2[i - 1][j] == EMPTY) {
+								map2[i - 1][j] = blocker;
+							}
+							else {
+
+							}
+							if (map2[i][j + 1] == FULL) {}
+							else if (map2[i][j + 1] != FULL && map2[i][j + 1] == EMPTY) {
+								map2[i][j + 1] = blocker;
+							}
+							else {
+
+							}
+						}
+					if (map2[i][j] == FULL) {
+						cout << i << endl;
+
+
+
+
+						if (j - 1 != -1) {
+							if (map2[i][j - 1] == FULL) {}
+							else if (map2[i][j - 1] != FULL && map2[i][j - 1] == EMPTY) {
+								map2[i][j - 1] = blocker;
+								cout << i << endl;
+							}
+							else {
+
+							}
+						}
+						if (j + 1 != 8) {
+							if (map2[i][j + 1] == FULL) {}
+							else if (map2[i][j + 1] != FULL && map2[i][j + 1] == EMPTY) {
+								map2[i][j + 1] = blocker;
+							}
+							else {
+
+							}
+						}
+						if (i + 1 != 7) {
+							if (map2[i + 1][j] == FULL) {}
+							else if (map2[i + 1][j] != FULL && map2[i + 1][j] == EMPTY) {
+								map2[i + 1][j] = blocker;
+							}
+							else {
+
+							}
+						}
+						if (i - 1 != -1) {
+							if (map2[i - 1][j] == FULL) {}
+							else if (map2[i - 1][j] != FULL && map2[i - 1][j] == EMPTY) {
+								map2[i - 1][j] = blocker;
+							}
+							else {
+
+							}
+
+						}
+						Show_Chart2();
+					}
+
+
+
+
+
+
+
+				}
+				cout << "Your seats has been confirmed."
+					<< endl;
+
+				Quit = 1;
+			}
+
+		}
+		else if (purchase == 2) {
+			cout << " Have a nice day!! " << endl;
+			movielisting(total, totaladult, totalchild, adultcash, childcash);
+		}
+	}
+	else if (showtime == 2) {
+		ticketadult = adult * 8.00;
+		ticketchild = child * 6.00;
+		total = ticketadult + ticketchild;
+		totaladult = adult + totaladult;
+		totalchild = child + totalchild;
+		Show_Chart4();
+		cout << "Shown above are the avaible seats for the day" << endl;
+		cout << "Your total is:  $" << total << endl;
+		cout << "Would you like to purchase these tickets? Enter (1 = YES / 2 = NO)" << endl;
+		cin >> purchase;
+		if (purchase == 1) {
+			adultcash = adultcash + totaladult;
+			childcash = childcash + totalchild;
+			do {
+				Show_Chart4();
+				cout << "Please select the row you would like to sit in: ";
+				cin >> row2;
+				cout << "Please select the seat you would like to sit in: ";
+				cin >> column2;
+				if (map4[row2 - 1][column2 - 1] == FULL)
+				{
+					cout << "Sorry that seat is sold-out, Please select a new seat.";
+					cout << endl;
+				}
+				else if (map4[row2 - 1][column2 - 1] == blocker) {}
+				else
+				{
+
+
+					cout << "is this the seat you would like? Enter (1 = YES / 2 = NO)";
+					cin >> answer;
+
+					if (answer == 1) {
+						map4[row2 - 1][column2 - 1] = FULL;
+					}
+
+
+				}
+				count++;
+			} while (count < totalseat);
+			cout << "Here are your seats" << endl;
+			answer = 1;
+			if (answer != 7)
+			{
+				cout << "searching" << endl;
+
+				num = 72;
+				int i;//row
+				int j;//columon
+				for (i = 0; i < row; i++) {
+					for (j = 0; j < columns;j++)
+
+						if (map4[i][j] == FULL) {
+							cout << i << endl;
+
+
+
+							if (j == 7) {
+								if (map4[i + 1][j] == FULL) {
+								}//row v
+								else if (map4[i + 1][j] != FULL && map4[i + 1][j] == EMPTY) {
+									map4[i + 1][j] = blocker;
+								}
+								else {
+
+								}
+								if (map4[i - 1][j] == FULL) {}//row aboe
+								else if (map4[i - 1][j] != FULL && map4[i - 1][j] == EMPTY) {
+									map4[i - 1][j] = blocker;
+								}
+								else {
+
+								}
+								if (map4[i][j - 1] == FULL) {}
+								else if (map4[i][j - 1] != FULL && map4[i][j - 1] == EMPTY) {
+									map4[i][j - 1] = blocker;
+								}
+								else {
+
+								}
+							}
+							if (j - 1 != -1) {
+								if (map4[i][j - 1] == FULL) {}
+								else if (map4[i][j - 1] != FULL && map4[i][j - 1] == EMPTY) {
+									map4[i][j - 1] = blocker;
+									cout << i << endl;
+								}
+								else {
+
+								}
+							}
+							if (j + 1 != 8) {
+								if (map4[i][j + 1] == FULL) {}
+								else if (map4[i][j + 1] != FULL && map4[i][j + 1] == EMPTY) {
+									map4[i][j + 1] = blocker;
+								}
+								else {
+
+								}
+							}
+							if (i + 1 != 7) {
+								if (map4[i + 1][j] == FULL) {}
+								else if (map4[i + 1][j] != FULL && map4[i + 1][j] == EMPTY) {
+									map4[i + 1][j] = blocker;
+								}
+								else {
+
+								}
+							}
+							if (i - 1 != -1) {
+								if (map4[i - 1][j] == FULL) {}
+								else if (map4[i - 1][j] != FULL && map4[i - 1][j] == EMPTY) {
+									map4[i - 1][j] = blocker;
+								}
+								else {
+
+								}
+
+							}
+
+						}
+
+
+
+
+
+
+
+				}
+				Show_Chart4();
+				cout << "Your seats has been confirmed."
+					<< endl;
+
+				Quit = 1;
+			}
+			else {
+				cout << "searching" << endl;
+
+				num = 72;
+				int i;
+				int j;
+				for (i = 0; i < row; i++) {
+					for (j = 0; j < row;j++)
+						if (j == 7 && map4[i][j] == FULL) {
+							if (map4[i + 1][j] == FULL) {}
+							else if (map4[i + 1][j] != FULL && map4[i + 1][j] == EMPTY) {
+								map4[i + 1][j] = blocker;
+							}
+							else {
+
+							}
+							if (map4[i - 1][j] == FULL) {}
+							else if (map4[i - 1][j] != FULL && map4[i - 1][j] == EMPTY) {
+								map4[i - 1][j] = blocker;
+							}
+							else {
+
+							}
+							if (map4[i][j + 1] == FULL) {}
+							else if (map4[i][j + 1] != FULL && map4[i][j + 1] == EMPTY) {
+								map4[i][j + 1] = blocker;
+							}
+							else {
+
+							}
+						}
+					if (map4[i][j] == FULL) {
+						cout << i << endl;
+
+
+
+
+						if (j - 1 != -1) {
+							if (map4[i][j - 1] == FULL) {}
+							else if (map4[i][j - 1] != FULL && map4[i][j - 1] == EMPTY) {
+								map4[i][j - 1] = blocker;
+								cout << i << endl;
+							}
+							else {
+
+							}
+						}
+						if (j + 1 != 8) {
+							if (map4[i][j + 1] == FULL) {}
+							else if (map4[i][j + 1] != FULL && map4[i][j + 1] == EMPTY) {
+								map4[i][j + 1] = blocker;
+							}
+							else {
+
+							}
+						}
+						if (i + 1 != 7) {
+							if (map4[i + 1][j] == FULL) {}
+							else if (map4[i + 1][j] != FULL && map4[i + 1][j] == EMPTY) {
+								map4[i + 1][j] = blocker;
+							}
+							else {
+
+							}
+						}
+						if (i - 1 != -1) {
+							if (map4[i - 1][j] == FULL) {}
+							else if (map4[i - 1][j] != FULL && map4[i - 1][j] == EMPTY) {
+								map4[i - 1][j] = blocker;
+							}
+							else {
+
+							}
+
+						}
+						Show_Chart4();
+					}
+
+
+
+
+
+
+
+				}
+				cout << "Your seats has been confirmed."
+					<< endl;
+
+				Quit = 1;
+			}
+
+		}
+		else if (purchase == 2) {
+			cout << " Have a nice day!! " << endl;
+			movielisting(total, totaladult, totalchild,adultcash, childcash);
+		}
+	} 
+	movielisting(total, totaladult, totalchild, adultcash, childcash);
+}
+void Show_Chart()
+{
+
+	cout << "Seats 1 2 3 4 5 6 7 8";
+	for (int row = 0; row < 7; row++)//rows
+	{
+		cout << endl << "Row " << (row + 1);
+
+		for (int columns = 0; columns < 8; columns++)
+		{
+			cout << " " << map[row][columns];
+		}
+	}
+	cout << endl;
+}
+void Show_Chart2()
+{
+
+	cout << "Seats 1 2 3 4 5 6 7 8";
+	for (int row = 0; row < 7; row++)//rows
+	{
+		cout << endl << "Row " << (row + 1);
+
+		for (int columns = 0; columns < 8; columns++)
+		{
+			cout << " " << map2[row][columns];
+		}
+	}
+	cout << endl;
+}
+void Show_Chart3()
+{
+
+	cout << "Seats 1 2 3 4 5 6 7 8";
+	for (int row = 0; row < 7; row++)//rows
+	{
+		cout << endl << "Row " << (row + 1);
+
+		for (int columns = 0; columns < 8; columns++)
+		{
+			cout << " " << map3[row][columns];
+		}
+	}
+	cout << endl;
+}
+void Show_Chart4()
+{
+
+	cout << "Seats 1 2 3 4 5 6 7 8";
+	for (int row = 0; row < 7; row++)//rows
+	{
+		cout << endl << "Row " << (row + 1);
+
+		for (int columns = 0; columns < 8; columns++)
+		{
+			cout << " " << map4[row][columns];
+		}
+	}
+	cout << endl;
+}
